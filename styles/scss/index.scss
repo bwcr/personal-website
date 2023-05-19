@@ -1,0 +1,80 @@
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+// create ul to have padding left of 24px
+ul {
+  padding-left: 24px;
+}
+
+@keyframes css_pulse {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+// change scrollbar to macos style
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--chakra-colors-chakra-body-bg);
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--chakra-colors-gray-500);
+  border-radius: 24px;
+  transition: all 0.3s ease-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--chakra-colors-gray-200);
+}
+
+.header {
+  &-wrapper {
+    transition: all 0.3s ease-out;
+    // position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    // background blur glass effect
+    $body-bg: var(--chakra-colors-chakra-body-bg);
+    border-bottom: 1px solid transparent;
+    &-scrolled {
+      background-color: rgba($body-bg, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -moz-backdrop-filter: blur(10px);
+      box-shadow: 0 0px 12px 0 rgba(0, 0, 0, 0.2);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      perspective: 1000;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+      border-bottom: 1px solid var(--chakra-colors-whiteAlpha-200);
+      header {
+        // paddingY to 24px
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+    header {
+      transition: all 0.3s ease-out;
+    }
+  }
+}
