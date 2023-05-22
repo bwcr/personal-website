@@ -10,6 +10,7 @@ import "../styles/fonts/remixicon.css";
 import { theme } from "../themes";
 import { SkipNavLink } from "@chakra-ui/skip-nav";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ function MyApp({ Component, pageProps }) {
     <Chakra cookies={pageProps.cookies}>
       <SkipNavLink>Skip to content</SkipNavLink>
       <Component {...pageProps} />
+      <Analytics />
     </Chakra>
   );
 }
