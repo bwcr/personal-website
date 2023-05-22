@@ -87,16 +87,23 @@ export function Navbar({ collapsed }) {
           >
             <Box>
               <Heading size={"lg"}>
-                <NextLink href={"/"}>B</NextLink>
+                <Link
+                  href={"/"}
+                  _hover={{
+                    textDecoration: "none",
+                  }}
+                >
+                  B
+                </Link>
               </Heading>
             </Box>
             <Box>
               {!mobile && (
                 <Stack spacing={6} direction={"row"} alignItems={"center"}>
                   {navigations.map((link) => (
-                    <NextLink scroll={false} href={link.href} key={link.label}>
+                    <Link href={link.href} key={link.label}>
                       {link.label}
-                    </NextLink>
+                    </Link>
                   ))}
                   {/* Button to download pdf file */}
                   <Button
@@ -165,16 +172,15 @@ export function Navbar({ collapsed }) {
                   p={4}
                 >
                   {navigations.map((link) => (
-                    <NextLink key={link.label} href={link.href} passHref>
-                      <Link
-                        color="gray.200"
-                        // color={colorMode === "dark" ? "gray.200" : "gray.800"}
-                        onClick={collapse.onClose}
-                        scroll={false}
-                      >
-                        {link.label}
-                      </Link>
-                    </NextLink>
+                    <Link
+                      color="gray.200"
+                      key={link.label}
+                      href={link.href}
+                      // color={colorMode === "dark" ? "gray.200" : "gray.800"}
+                      onClick={collapse.onClose}
+                    >
+                      {link.label}
+                    </Link>
                   ))}
                   {/* Button to download pdf file */}
                   <Button

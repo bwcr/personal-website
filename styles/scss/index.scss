@@ -1,3 +1,5 @@
+// background blur glass effect
+$body-bg: var(--chakra-colors-chakra-body-bg);
 html,
 body {
   scroll-behavior: smooth;
@@ -26,7 +28,7 @@ ul {
 
 ::-webkit-scrollbar-track {
   background: var(--chakra-colors-chakra-body-bg);
-  opacity: 0.5;
+  opacity: 0;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -47,8 +49,6 @@ ul {
     left: 0;
     right: 0;
     z-index: 999;
-    // background blur glass effect
-    $body-bg: var(--chakra-colors-chakra-body-bg);
     border-bottom: 1px solid transparent;
     &-scrolled {
       background-color: rgba($body-bg, 0.5);

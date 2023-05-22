@@ -39,7 +39,6 @@ export const Tag = defineStyleConfig({
 });
 
 const config = {
-  cssVarPrefix: "bwcr",
   initialColorMode: "dark",
   useSystemColorMode: false,
 };

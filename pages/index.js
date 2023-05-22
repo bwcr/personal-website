@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { ExternalLinkIcon, WarningIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon, Icon, WarningIcon } from "@chakra-ui/icons";
 import {
   chakra,
   Box,
@@ -44,40 +44,33 @@ import { SkipNavContent } from "@chakra-ui/skip-nav";
 function Home({ homepage, experiences, skills }) {
   const { colorMode } = useColorMode();
 
+  const meta = {
+    website: "https://www.bayuwicaksono.com",
+    title: "Bayu Wicaksono",
+    description:
+      "Bayu Wicaksono is a developer with many experiences such as a full-stack and front-end developer. He is passionate about creating visually appealing designs and keeping up with the latest trends in web design. This page showcases his skills in Cascading Style Sheets (CSS), Chakra UI, Front-End Development, HTML, HTML5, JavaScript, REST APIs, Responsive Web Design, SASS, Tailwind CSS, Vue.js, Web Applications, and Web Design.",
+  };
+
+  meta.image = `${meta.website}/png/cover.png`;
+
   return (
     <>
       <Head>
-        <title>Bayu Wicaksono</title>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <title>{meta.title}</title>
+        <meta name="title" content={meta.title} />
+        <meta name="description" content={meta.description} />
 
-        <meta name="description" content="Bayu Wicaksono's personal website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow" />
-        <meta name="google" content="notranslate" />
-        <meta name="google" content="nositelinkssearchbox" />
-
-        <meta property="og:site_name" content="Bayu Wicaksono" />
-        <meta property="og:title" content="Bayu Wicaksono" />
-        <meta
-          property="og:description"
-          content="Bayu Wicaksono's personal website"
-        />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bayuwicaksono.com" />
+        <meta property="og:url" content={meta.website} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:image" content={meta.image} />
 
-        <meta name="twitter:site" content="@bwcr_" />
-        <meta name="twitter:creator" content="@bwcr_" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Bayu Wicaksono" />
-        <meta
-          name="twitter:description"
-          content="Bayu Wicaksono's personal website"
-        />
-        <meta name="twitter:url" content="https://bayuwicaksono.com" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={meta.website} />
+        <meta property="twitter:title" content={meta.title} />
+        <meta property="twitter:description" content={meta.description} />
+        <meta property="twitter:image" content={meta.image} />
       </Head>
       <Box position={"relative"} overflow={"hidden"}>
         <Box>
@@ -180,8 +173,12 @@ function Home({ homepage, experiences, skills }) {
             py={6}
             as={"section"}
           >
-            <Stack spacing={4}>
-              <AnimationOnScroll animateIn="animate__fadeIn" animateOnce={true}>
+            <AnimationOnScroll
+              animateIn="animate__fadeIn"
+              animateOnce={true}
+              delay={300}
+            >
+              <Stack spacing={0}>
                 <HStack spacing={4} maxW={"container.md"}>
                   <Flex shrink={0}>
                     <Heading size={"xl"}>About Me</Heading>
@@ -194,14 +191,14 @@ function Home({ homepage, experiences, skills }) {
                     my={4}
                   />
                 </HStack>
-              </AnimationOnScroll>
-              <AnimationOnScroll animateIn="animate__fadeIn" animateOnce={true}>
+
                 <Stack
                   direction={{
                     base: "column-reverse",
                     md: "row",
                   }}
                   spacing={4}
+                  pt={6}
                 >
                   <Stack spacing={4} maxW={"container.md"}>
                     <Flex
@@ -303,8 +300,8 @@ function Home({ homepage, experiences, skills }) {
                     />
                   </Stack>
                 </Stack>
-              </AnimationOnScroll>
-            </Stack>
+              </Stack>
+            </AnimationOnScroll>
           </Stack>
           {/* Experiences Section */}
           <Stack
@@ -314,8 +311,12 @@ function Home({ homepage, experiences, skills }) {
             py={6}
             as={"section"}
           >
-            <Stack spacing={0}>
-              <AnimationOnScroll animateIn="animate__fadeIn" animateOnce={true}>
+            <AnimationOnScroll
+              animateIn="animate__fadeIn"
+              animateOnce={true}
+              delay={300}
+            >
+              <Stack spacing={0}>
                 <HStack spacing={4} maxW={"container.md"}>
                   <Flex shrink={0}>
                     <Heading size={"xl"}>Experiences</Heading>
@@ -328,8 +329,6 @@ function Home({ homepage, experiences, skills }) {
                     my={4}
                   />
                 </HStack>
-              </AnimationOnScroll>
-              <AnimationOnScroll animateIn="animate__fadeIn" animateOnce={true}>
                 <Accordion
                   defaultIndex={[0]}
                   allowMultiple
@@ -459,8 +458,8 @@ function Home({ homepage, experiences, skills }) {
                     </AccordionItem>
                   ))}
                 </Accordion>
-              </AnimationOnScroll>
-            </Stack>
+              </Stack>
+            </AnimationOnScroll>
           </Stack>
           {/* Projects Section */}
           <Stack
@@ -470,8 +469,12 @@ function Home({ homepage, experiences, skills }) {
             py={6}
             as={"section"}
           >
-            <Stack spacing={0}>
-              <AnimationOnScroll animateIn="animate__fadeIn" animateOnce={true}>
+            <AnimationOnScroll
+              animateIn="animate__fadeIn"
+              animateOnce={true}
+              delay={300}
+            >
+              <Stack spacing={0}>
                 <HStack spacing={4} maxW={"container.md"}>
                   <Flex shrink={0}>
                     <Heading size={"xl"}>Projects</Heading>
@@ -479,8 +482,7 @@ function Home({ homepage, experiences, skills }) {
                   {/* add horizontal line */}
                   <Box w={"full"} h={"1px"} bg={"orange.300"} my={4} />
                 </HStack>
-              </AnimationOnScroll>
-              <AnimationOnScroll animateIn="animate__fadeIn" animateOnce={true}>
+
                 <Box position={"relative"}>
                   <Stack
                     maxW={"container.lg"}
@@ -732,8 +734,8 @@ function Home({ homepage, experiences, skills }) {
                     </Stack>
                   </Stack>
                 </Box>
-              </AnimationOnScroll>
-            </Stack>
+              </Stack>
+            </AnimationOnScroll>
           </Stack>
           {/* Contact Section */}
           <Stack
@@ -745,7 +747,11 @@ function Home({ homepage, experiences, skills }) {
             as={"section"}
             pos={"relative"}
           >
-            <AnimationOnScroll animateIn="animate__fadeIn" animateOnce={true}>
+            <AnimationOnScroll
+              animateIn="animate__fadeIn"
+              animateOnce={true}
+              delay={250}
+            >
               <Stack
                 spacing={0}
                 ring={1}
@@ -864,9 +870,49 @@ function Home({ homepage, experiences, skills }) {
             spacing={4}
             justify={"center"}
           >
-            <Stack direction={"row"} spacing={4} justify={"center"}>
+            <Stack direction={"row"} spacing={6} justify={"center"}>
+              {[
+                {
+                  name: "Github",
+                  href: "https://github.com/bwcr",
+                  icon: "ri-github-line",
+                },
+                {
+                  name: "LinkedIn",
+                  href: "https://www.linkedin.com/in/bwcr/",
+                  icon: "ri-linkedin-box-fill",
+                },
+                {
+                  name: "Instagram",
+                  href: "https://www.instagram.com/bwcr_/",
+                  icon: "ri-instagram-line",
+                },
+              ].map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.href}
+                  isExternal
+                  _hover={{
+                    color: "orange.500",
+                  }}
+                  _focus={{
+                    color: "orange.500",
+                  }}
+                  _active={{
+                    color: "orange.500",
+                  }}
+                  fontSize={"2xl"}
+                >
+                  <chakra.span className={link.icon} />
+                </Link>
+              ))}
+            </Stack>
+            <Stack alignItems={"center"} spacing={2} justify={"center"}>
               <Text fontSize={"sm"}>
                 © {new Date().getFullYear()} {homepage.attributes.name}
+              </Text>
+              <Text fontSize={"sm"}>
+                Designed and Developed using Chakra UI
               </Text>
             </Stack>
           </Stack>
