@@ -46,9 +46,9 @@ function Home({ homepage, experiences, skills }) {
 
   const meta = {
     website: "https://www.bayuwicaksono.com",
-    title: "Bayu Wicaksono",
+    title: `${homepage.attributes.name} - ${homepage.attributes.headline}`,
     description:
-      "Bayu Wicaksono is a developer with many experiences such as a full-stack and front-end developer. He is passionate about creating visually appealing designs and keeping up with the latest trends in web design. This page showcases his skills in Cascading Style Sheets (CSS), Chakra UI, Front-End Development, HTML, HTML5, JavaScript, REST APIs, Responsive Web Design, SASS, Tailwind CSS, Vue.js, Web Applications, and Web Design.",
+      "Bayu Wicaksono is a developer with many experiences such as a full-stack and front-end developer. He is passionate about creating visually appealing designs and keeping up with the latest trends in web design.",
   };
 
   meta.image = `${meta.website}/png/cover.png`;
@@ -106,12 +106,13 @@ function Home({ homepage, experiences, skills }) {
           <Stack justify={"center"} minH={"100vh"} py={6} as={"section"}>
             <Stack spacing={[2, 4, 6]}>
               <Box className="animate__animated animate__fadeIn">
-                <Heading size={["2xl", "3xl", "4xl"]}>
+                <Heading as="h1" size={["2xl", "3xl", "4xl"]}>
                   {homepage.attributes.name}
                 </Heading>
               </Box>
               <Box className="animate__animated animate__fadeIn">
                 <Heading
+                  as={"h2"}
                   color={colorMode === "light" ? "orange.500" : "orange.500"}
                   size={["xl", "2xl", "3xl"]}
                 >
