@@ -31,7 +31,53 @@ export const Button = defineStyleConfig({
 });
 
 export const Link = defineStyleConfig({
-  variants: { glassmorphism },
+  variants: {
+    glassmorphism,
+    slideUnderline: (props) => {
+      const { colorScheme: c } = props;
+      return {
+        position: "relative",
+        padding: ".2em 0",
+        _after: {
+          opacity: 0,
+          transform: "translate3d(-20%, 0, 0)",
+          transition: "transform .3s ease-in-out, opacity .3s ease-in-out",
+          content: "''",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: ".1em",
+          bg: mode(`${c}.500`, `${c}.300`)(props),
+        },
+        _hover: {
+          textDecoration: "none",
+          _after: {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+          },
+        },
+        _focus: {
+          textDecoration: "none",
+          _after: {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+          },
+        },
+        _active: {
+          textDecoration: "none",
+          _after: {
+            transform: "translate3d(0, 0, 0)",
+            opacity: 1,
+          },
+        },
+      };
+    },
+  },
+  defaultProps: {
+    variant: "slideUnderline",
+    colorScheme: "orange",
+  },
 });
 
 export const Tag = defineStyleConfig({

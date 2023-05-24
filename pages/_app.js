@@ -1,7 +1,5 @@
 import {
   ChakraProvider,
-  cookieStorageManager,
-  extendTheme,
   cookieStorageManagerSSR,
   localStorageManager,
 } from "@chakra-ui/react";
@@ -9,10 +7,7 @@ import "../styles/scss/index.scss";
 import "../styles/fonts/remixicon.css";
 import { theme } from "../themes";
 import { SkipNavLink } from "@chakra-ui/skip-nav";
-import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export function Chakra({ cookies, children }) {
   // b) Pass `colorModeManager` prop
