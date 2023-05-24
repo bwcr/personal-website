@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { ExternalLinkIcon, Icon, WarningIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon, WarningIcon } from "@chakra-ui/icons";
 import {
   chakra,
   Box,
@@ -20,7 +20,6 @@ import {
   AccordionPanel,
   AccordionIcon,
   Tag,
-  Image,
   Card,
   CardBody,
   LinkBox,
@@ -28,8 +27,6 @@ import {
   Avatar,
 } from "@chakra-ui/react";
 import React from "react";
-import { getExperiences } from "../services/experience.service";
-import { getHomepage } from "../services/homepage.service";
 import { Navbar } from "../components/navbar";
 import HomepageImage from "../components/homepage/image";
 import Image from "next/image";
@@ -39,19 +36,8 @@ import Head from "next/head";
 import moment from "moment/moment";
 import { SkipNavContent } from "@chakra-ui/skip-nav";
 
-// import { InView } from "react-intersection-observer";
-
-function Home({ homepage, experiences, skills }) {
+function Home({ meta, homepage, experiences }) {
   const { colorMode } = useColorMode();
-
-  const meta = {
-    website: "https://www.bayuwicaksono.com",
-    title: `${homepage.attributes.name} - ${homepage.attributes.headline}`,
-    description:
-      "Bayu Wicaksono is a developer with many experiences such as a full-stack and front-end developer. He is passionate about creating visually appealing designs and keeping up with the latest trends in web design.",
-  };
-
-  meta.image = `${meta.website}/png/cover.png`;
 
   return (
     <>
@@ -74,15 +60,15 @@ function Home({ homepage, experiences, skills }) {
       </Head>
       <Box position={"relative"} overflow={"hidden"}>
         <Box>
-          {["orange.100", "orange.500", "orange.300"].map((color, i) => (
+          {["orange.300", "orange.500", "orange.700"].map((color, i) => (
             <Box
               key={color}
               position={"absolute"}
-              w={"25vw"}
-              h={"25vh"}
+              w={"40vw"}
+              h={"40vh"}
               zIndex={-999}
-              top={i === 0 ? 0 : `${i * 150}`}
-              right={`-${i + 50}`}
+              top={i === 0 ? 0 : `${i * 5}%`}
+              right={`-${i * 5}%`}
               animation={`css_pulse ${i + 8}s infinite`}
               filter={"blur(100px)"}
               transform={"translate3d(0,0,0)"}
@@ -224,10 +210,31 @@ function Home({ homepage, experiences, skills }) {
                       fontSize={["sm", "md"]}
                       maxW={"container.md"}
                       // textAlign={"justify"}
-                      dangerouslySetInnerHTML={{
-                        __html: homepage.attributes.about_me,
-                      }}
-                    />
+                    >
+                      <p>
+                        Hello! My name is Bayu Wicaksono and I am passionate
+                        about{" "}
+                        <strong>creating visually appealing designs </strong>
+                        that people will appreciate. My love for graphic design
+                        began during high school. When I started studying
+                        Informatics at Diponegoro University, I realized that I
+                        could collaborate design into something valuable in web
+                        platforms.
+                      </p>
+                      <p>
+                        Currently, I am fully focused on pursuing my career as a{" "}
+                        <strong>frontend developer</strong>. I am constantly
+                        learning new techniques and keeping up-to-date with the
+                        latest trends in web design to make sure that my work is
+                        always <strong>fresh and innovative</strong>. My
+                        ultimate goal is to create websites that not only look
+                        great but also{" "}
+                        <strong>provide an optimal user experience</strong>. I
+                        am excited to continue growing as a{" "}
+                        <strong>frontend developer </strong>and taking on new
+                        challenges in the future.
+                      </p>
+                    </Flex>
                     <Heading
                       color={colorMode === "light" ? "gray.600" : "gray.400"}
                       as={Text}
@@ -241,22 +248,7 @@ function Home({ homepage, experiences, skills }) {
                       columns={[1, 2, 3]}
                       spacing={2}
                     >
-                      {[
-                        "Responsive Web Design",
-                        "Front-End Development",
-                        "Chakra UI",
-                        "JavaScript",
-                        "HTML",
-                        "REST APIs",
-                        "SASS",
-                        "React.js",
-                        "Next.js",
-                        "HTML5",
-                        "Cascading Style Sheets (CSS)",
-                        "Tailwind CSS",
-                        "Web Applications",
-                        "Vue.js",
-                      ].map((skill) => (
+                      {homepage.attributes.skills.map((skill) => (
                         <ListItem
                           color={
                             colorMode === "light" ? "gray.600" : "gray.400"
@@ -403,7 +395,7 @@ function Home({ homepage, experiences, skills }) {
                           </Box>
                           <Box>
                             <Heading size={"lg"}>
-                              {experience.attributes.role}
+                              {experience.attributes.title}
                             </Heading>
                           </Box>
                           <Box>
@@ -415,10 +407,11 @@ function Home({ homepage, experiences, skills }) {
                               }
                               // as={chakra.b}
                               isExternal
+                              w={"fit-content"}
                               href={experience.attributes.company_url || "#"}
                               size={"sm"}
                             >
-                              {experience.attributes.company}
+                              {experience.attributes.company_name}
                             </Link>
                           </Box>
                         </Stack>
@@ -498,7 +491,8 @@ function Home({ homepage, experiences, skills }) {
                         id: 1,
                         attributes: {
                           name: "Project 1",
-                          image: "https://placehold.co/580x360/gray/darkgray",
+                          image:
+                            "https://www.placehold.co/580x360/gray/darkgray",
                           company: "Company 1",
                           description:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -714,6 +708,7 @@ function Home({ homepage, experiences, skills }) {
                               colorMode === "light" ? "gray.800" : "gray.200"
                             }
                             isExternal
+                            w={"fit-content"}
                             href={"https://github.com/bwcr"}
                           >
                             <chakra.span fontWeight={"bold"}>
@@ -722,6 +717,7 @@ function Home({ homepage, experiences, skills }) {
                           </Link>{" "}
                           <Link
                             fontSize={"sm"}
+                            w={"fit-content"}
                             alignSelf={"center"}
                             color={
                               colorMode === "light" ? "gray.800" : "gray.200"
@@ -828,7 +824,6 @@ function Home({ homepage, experiences, skills }) {
                           bg:
                             colorMode === "light" ? "orange.700" : "orange.700",
                         }}
-                        variant={"glassmorphism"}
                         fontWeight={"bold"}
                       >
                         Send me an email
@@ -879,23 +874,7 @@ function Home({ homepage, experiences, skills }) {
             justify={"center"}
           >
             <Stack direction={"row"} spacing={6} justify={"center"}>
-              {[
-                {
-                  name: "Github",
-                  href: "https://github.com/bwcr",
-                  icon: "ri-github-line",
-                },
-                {
-                  name: "LinkedIn",
-                  href: "https://www.linkedin.com/in/bwcr/",
-                  icon: "ri-linkedin-box-fill",
-                },
-                {
-                  name: "Instagram",
-                  href: "https://www.instagram.com/bwcr_/",
-                  icon: "ri-instagram-line",
-                },
-              ].map((link, index) => (
+              {homepage.attributes.socials.map((link, index) => (
                 <Link
                   key={index}
                   href={link.href}
@@ -932,26 +911,110 @@ function Home({ homepage, experiences, skills }) {
 
 export const getStaticProps = async () => {
   try {
-    // await promise all getExperiences and getHomepage
-    const res = await Promise.all([
-      getExperiences(),
-      getHomepage(),
-      getSkills(),
-    ]);
+    const experiences = [
+      {
+        id: 1,
+        attributes: {
+          title: "Frontend Developer",
+          company_name: "Maven Digital Asia",
+          company_url: "https://maven.co.id/",
+          description:
+            "<p>Maven Digital Asia is a digital company that prioritizes delivering measurable outcomes, formed from the merger of two exceptional organizations. During my past experiences, I worked on several front-end projects that involved React development and creating WordPress websites for e-commerce purposes. Some of my significant accomplishments in these projects were:</p><ul><li><p>Improved and developed a <strong>CRUD dashboard</strong> for Cleaning Service Product management using the <strong>React </strong>framework.</p></li><li><p>Designed and developed a <strong>WordPress</strong> landing page and an e-commerce website.</p></li><li><p>Created a landing page with a career portal by utilizing <strong>React</strong>, <strong>Tailwind CSS</strong>, and <strong>Next.js</strong> framework.</p></li><li><p>Built an HTML static page for insurance registration with the support of the <strong>Tailwind CSS </strong>framework.</p></li></ul>",
+          start_date: "2021-03-25",
+          end_date: "2021-11-25",
+        },
+      },
+      {
+        id: 2,
+        attributes: {
+          title: "Full Stack Developer",
+          company_name: "Insignia ID",
+          company_url: "https://insignia.co.id/",
+          description:
+            "<p>Insignia offers e-commerce solutions that assist brands and merchants in making data-driven business decisions by utilizing big data analytics and conversational user interfaces.</p><p>I've had the chance to work on a number of websites with a front-end development-heavy approach during my professional time at Insignia. I have successfully finished the following projects:</p><ul><li><p>Designed an efficient and sustainable <strong>dashboard template</strong> by utilizing <strong>React </strong>and <strong>Chakra UI</strong>. The template was used to manage various items and proved to be highly effective.</p></li><li><p>Developed <strong>ETL (Extract, Transform, Load)</strong> tools that feature <strong>drag-and-drop</strong> functionality. These tools were created to simplify the data processing and migration process.</p></li><li><p>Built a website for <strong>online travel and tour booking</strong> that offers a range of services, including the ability to book flights, trains, hotels, and trips.</p></li><li><p>Designed a <strong>virtual campaign website</strong> aimed at raising awareness for a specific cause or event.</p></li></ul>",
+          start_date: "2021-11-25",
+          end_date: "2023-04-01",
+        },
+      },
+      {
+        id: 3,
+        attributes: {
+          title: "IT Development Staff",
+          company_name: "PT. Brantas Abipraya",
+          company_url: "https://brantas-abipraya.co.id/",
+          description:
+            "<p>PT. Brantas Abipraya is an Indonesian state-owned construction company that provides construction services for various types of projects, such as dams, airports, and buildings.</p><ul><li><p>Working on various IT-related stuff such as <strong>dashboard visualization website</strong> in order to visualize internal company results and progress.</p></li><li><p>Doing research to provide <strong>weather forecast applications</strong> for site construction visit planning.</p></li></ul>",
+          start_date: "2023-04-01",
+          end_date: null,
+        },
+      },
+    ];
+    const homepage = {
+      attributes: {
+        name: "Bayu Wicaksono",
+        description:
+          "A dynamic and eager-to-learn fresh graduate with two years of experience as a full-stack developer and front-end developer. Having three years of experience in Graphics Design in an international non-profit organization during my college years.",
+        headline: "Visual Enthusiast 🪄",
+        skills: [
+          "Responsive Web Design",
+          "Front-End Development",
+          "Chakra UI",
+          "JavaScript",
+          "HTML",
+          "REST APIs",
+          "SASS",
+          "React.js",
+          "Next.js",
+          "HTML5",
+          "Cascading Style Sheets (CSS)",
+          "Tailwind CSS",
+          "Web Applications",
+          "Vue.js",
+        ],
+        socials: [
+          {
+            name: "Github",
+            href: "https://www.github.com/bwcr",
+            icon: "ri-github-line",
+          },
+          {
+            name: "LinkedIn",
+            href: "https://www.linkedin.com/in/bwcr/",
+            icon: "ri-linkedin-box-fill",
+          },
+          {
+            name: "Instagram",
+            href: "https://www.instagram.com/bwcr_/",
+            icon: "ri-instagram-line",
+          },
+        ],
+      },
+    };
+    const meta = {
+      website: "https://bayuwicaksono.com",
+      title: `${homepage.attributes.name} - ${homepage.attributes.headline}`,
+      description:
+        "Bayu Wicaksono is a developer with many experiences such as a full-stack and front-end developer. He is passionate about creating visually appealing designs and keeping up with the latest trends in web design.",
+    };
+
+    meta.image = `${meta.website}/png/cover.png`;
+
     // return props
     return {
       props: {
-        experiences: res[0].data,
-        homepage: res[1].data,
-        skills: res[2].data,
+        experiences: experiences.sort((a, b) =>
+          a.attributes.start_date > b.attributes.start_date ? -1 : 1
+        ),
+        homepage,
+        meta,
       },
     };
   } catch (err) {
     return {
       props: {
         experiences: [],
-        homepage: [],
-        skills: [],
+        homepage: {},
+        meta: {},
       },
     };
   }
