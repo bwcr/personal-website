@@ -20,7 +20,7 @@ import {
 import NextLink from "next/link";
 import React, { useEffect } from "react";
 
-export function Navbar({ collapsed }) {
+export function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const hideNav = useDisclosure({
     defaultIsOpen: true,
@@ -163,7 +163,7 @@ export function Navbar({ collapsed }) {
               bg={colorMode === "dark" ? "whiteAlpha.50" : "blackAlpha.50"}
               backdropFilter={"blur(10px)"}
             >
-              <DrawerCloseButton />
+              <DrawerCloseButton color="gray.200" />
               <DrawerBody>
                 <Stack
                   spacing={6}
