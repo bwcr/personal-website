@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, useColorMode } from "@chakra-ui/react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 const WrapperImage = ({ alt }) => {
   const { colorMode } = useColorMode();
@@ -18,8 +18,8 @@ const WrapperImage = ({ alt }) => {
       <Image
         src="/jpg/me.jpg"
         alt={alt}
-        layout="fill"
-        objectFit="cover"
+        width={300}
+        height={300}
         className="image"
       />
     </Box>

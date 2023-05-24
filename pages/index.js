@@ -32,7 +32,7 @@ import { getExperiences } from "../services/experience.service";
 import { getHomepage } from "../services/homepage.service";
 import { Navbar } from "../components/navbar";
 import HomepageImage from "../components/homepage/image";
-import { getSkills } from "../services/skills.service";
+import Image from "next/image";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import "animate.css/animate.min.css";
 import Head from "next/head";
@@ -526,14 +526,20 @@ function Home({ homepage, experiences, skills }) {
                           position={"relative"}
                         >
                           <LinkBox position={"relative"}>
-                            <Image
-                              className="project-image-actual"
-                              rounded={"md"}
-                              // zIndex={-999}
+                            <Box
+                              rounded="md"
                               position={"relative"}
-                              alt={project.attributes.name}
-                              src={project.attributes.image}
-                            />
+                              overflow={"hidden"}
+                            >
+                              <Image
+                                className="project-image-actual"
+                                // zIndex={-999}
+                                width={640}
+                                height={480}
+                                alt={project.attributes.name}
+                                src={project.attributes.image}
+                              />
+                            </Box>
                             <Box
                               className="project-image-overlay"
                               transition={"all 0.3s ease"}
@@ -774,13 +780,14 @@ function Home({ homepage, experiences, skills }) {
                     <Stack w={"full"}>
                       {/* Photo of me */}
                       <Box alignSelf={"center"}>
-                        <Avatar
-                          size={"xl"}
-                          name={"Bayu Wicaksono"}
-                          src={"/jpg/me.jpg"}
-                          shadow={"lg"}
-                          loading={"lazy"}
-                        />
+                        <Box overflow={"hidden"} shadow={"lg"} rounded={"full"}>
+                          <Image
+                            src="/jpg/me.jpg"
+                            alt="Bayu Wicaksono"
+                            width={120}
+                            height={120}
+                          />
+                        </Box>
                       </Box>
                       <Heading size={"xl"} textAlign={"center"}>
                         Get in touch
