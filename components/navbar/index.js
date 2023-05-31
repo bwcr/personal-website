@@ -40,7 +40,7 @@ export function Navbar() {
   };
 
   function handleResume() {
-    return window.open("/pdf/Bayu Wicaksono - IT Resume.pdf", "_blank");
+    return window.open("/pdf/resume.pdf", "_blank");
   }
 
   // hide navbar when scroll down and show it when scroll up but not in mobile
