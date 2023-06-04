@@ -43,6 +43,7 @@ function Home({ meta, homepage, experiences }) {
     <>
       <Head>
         <title>{meta.title}</title>
+        <link rel="canonical" href={meta.website} key="canonical" />
         <meta name="title" content={meta.title} />
         <meta name="description" content={meta.description} />
 

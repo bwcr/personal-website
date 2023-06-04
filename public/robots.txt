@@ -1,3 +1,5 @@
-# Allow all crawlers
-User-agent: *
+User-Agent: *
 Allow: /
+Disallow: /private/
+
+Sitemap: https://bayuwicaksono.com/sitemap.xml
