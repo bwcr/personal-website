@@ -10,6 +10,10 @@ module.exports = {
         protocol: "https",
         hostname: "**.placehold.co",
       },
+      {
+        protocol: "https",
+        hostname: "**.bayuwicaksono.com",
+      },
     ],
   },
   sassOptions: {
