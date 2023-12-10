@@ -934,21 +934,21 @@ export const getStaticProps = async () => {
           description:
             "<p>Insignia offers e-commerce solutions that assist brands and merchants in making data-driven business decisions by utilizing big data analytics and conversational user interfaces.</p><p>I've had the chance to work on a number of websites with a front-end development-heavy approach during my professional time at Insignia. I have successfully finished the following projects:</p><ul><li><p>Designed an efficient and sustainable <strong>dashboard template</strong> by utilizing <strong>React </strong>and <strong>Chakra UI</strong>. The template was used to manage various items and proved to be highly effective.</p></li><li><p>Developed <strong>ETL (Extract, Transform, Load)</strong> tools that feature <strong>drag-and-drop</strong> functionality. These tools were created to simplify the data processing and migration process.</p></li><li><p>Built a website for <strong>online travel and tour booking</strong> that offers a range of services, including the ability to book flights, trains, hotels, and trips.</p></li><li><p>Designed a <strong>virtual campaign website</strong> aimed at raising awareness for a specific cause or event.</p></li></ul>",
           start_date: "2021-11-25",
-          end_date: "2023-04-01",
-        },
-      },
-      {
-        id: 3,
-        attributes: {
-          title: "IT Development Staff",
-          company_name: "PT. Brantas Abipraya",
-          company_url: "https://brantas-abipraya.co.id/",
-          description:
-            "<p>PT. Brantas Abipraya is an Indonesian state-owned construction company that provides construction services for various types of projects, such as dams, airports, and buildings.</p><ul><li><p>Working on various IT-related stuff such as <strong>dashboard visualization website</strong> in order to visualize internal company results and progress.</p></li><li><p>Doing research to provide <strong>weather forecast applications</strong> for site construction visit planning.</p></li></ul>",
-          start_date: "2023-04-01",
           end_date: null,
         },
       },
+      //   {
+      //     id: 3,
+      //     attributes: {
+      //       title: "IT Development Staff",
+      //       company_name: "PT. Brantas Abipraya",
+      //       company_url: "https://brantas-abipraya.co.id/",
+      //       description:
+      //         "<p>PT. Brantas Abipraya is an Indonesian state-owned construction company that provides construction services for various types of projects, such as dams, airports, and buildings.</p><ul><li><p>Working on various IT-related stuff such as <strong>dashboard visualization website</strong> in order to visualize internal company results and progress.</p></li><li><p>Doing research to provide <strong>weather forecast applications</strong> for site construction visit planning.</p></li></ul>",
+      //       start_date: "2023-04-01",
+      //       end_date: null,
+      //     },
+      //   },
     ];
     const homepage = {
       attributes: {
