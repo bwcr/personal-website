@@ -36,7 +36,7 @@ import Head from "next/head";
 import moment from "moment/moment";
 import { SkipNavContent } from "@chakra-ui/skip-nav";
 
-function Home({ meta, homepage, experiences }) {
+function Home({ meta, homepage, experiences, projects }) {
   const { colorMode } = useColorMode();
 
   return (
@@ -90,7 +90,13 @@ function Home({ meta, homepage, experiences }) {
         <SkipNavContent />
         <Container maxW={"container.xl"} mx={"auto"} px={6}>
           {/* Header */}
-          <Stack justify={"center"} minH={"100vh"} py={6} as={"section"}>
+          <Stack
+            justify={"center"}
+            minH={"100vh"}
+            py={6}
+            as={"section"}
+            className="header-section"
+          >
             <Stack spacing={[2, 4, 6]}>
               <Box className="animate__animated animate__fadeIn">
                 <Heading as="h1" size={["2xl", "3xl", "4xl"]}>
@@ -160,6 +166,7 @@ function Home({ meta, homepage, experiences }) {
             minH={"100vh"}
             py={6}
             as={"section"}
+            className="about-section"
           >
             <AnimationOnScroll
               animateIn="animate__fadeIn"
@@ -304,6 +311,7 @@ function Home({ meta, homepage, experiences }) {
             id="experience"
             py={6}
             as={"section"}
+            className="experience-section"
           >
             <AnimationOnScroll
               animateIn="animate__fadeIn"
@@ -463,6 +471,7 @@ function Home({ meta, homepage, experiences }) {
             id="projects"
             py={6}
             as={"section"}
+            className="projects-section"
           >
             <AnimationOnScroll
               animateIn="animate__fadeIn"
@@ -487,23 +496,10 @@ function Home({ meta, homepage, experiences }) {
                     }}
                     pt={6}
                   >
-                    {[
-                      {
-                        id: 1,
-                        attributes: {
-                          name: "Project 1",
-                          image:
-                            "https://www.placehold.co/580x360/gray/darkgray",
-                          company: "Company 1",
-                          description:
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                          url: "https://github.com",
-                        },
-                      },
-                    ].map((project) => (
+                    {projects.map((project) => (
                       // Create a 2 column grid layout with image on the left and text on the right
                       <Stack
-                        filter={"blur(10px)"}
+                        // filter={"blur(10px)"}
                         direction={
                           project.id % 2 !== 0
                             ? { base: "column", md: "row" }
@@ -511,6 +507,7 @@ function Home({ meta, homepage, experiences }) {
                         }
                         spacing={4}
                         key={project.id}
+                        position={"relative"}
                       >
                         <Box
                           className="project-image-wrapper"
@@ -565,8 +562,14 @@ function Home({ meta, homepage, experiences }) {
                           </LinkBox>
                         </Box>
                         {/* create a card with hover shadow contains project name, description and link to github */}
-                        <Stack spacing={4} alignSelf={"center"}>
-                          <Stack w={"full"}>
+                        <Stack
+                          spacing={4}
+                          alignSelf={"center"}
+                          position={{ md: "absolute" }}
+                          sx={project.id % 2 === 0 ? { left: 0 } : { right: 0 }}
+                          zIndex={999}
+                        >
+                          <Stack w={"full"} position={"relative"} spacing={4}>
                             <Box
                               alignSelf={
                                 project.id % 2 === 0
@@ -598,7 +601,8 @@ function Home({ meta, homepage, experiences }) {
                                 ? "blackAlpha.300"
                                 : "whiteAlpha.300"
                             }
-                            backdropBlur={4}
+                            maxW={"container.sm"}
+                            backdropFilter={"blur(2px)"}
                             bgColor={
                               colorMode === "light"
                                 ? "blackAlpha.50"
@@ -648,95 +652,6 @@ function Home({ meta, homepage, experiences }) {
                     ))}
                   </Stack>
                   {/* Coming Soon */}
-                  <Stack
-                    maxW={"container.lg"}
-                    spacing={{
-                      base: 6,
-                      md: 40,
-                    }}
-                    sx={{
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                    }}
-                    pt={6}
-                    position={"absolute"}
-                  >
-                    <Stack
-                      direction={"column"}
-                      spacing={4}
-                      ring={1}
-                      ringColor={
-                        colorMode === "dark"
-                          ? "whiteAlpha.300"
-                          : "blackAlpha.300"
-                      }
-                      rounded={"xl"}
-                      backdropBlur={4}
-                      bgColor={
-                        colorMode === "dark" ? "whiteAlpha.50" : "blackAlpha.50"
-                      }
-                      color={colorMode === "light" ? "gray.800" : "gray.200"}
-                      p={6}
-                    >
-                      {/* Big logo warning */}
-                      <Box
-                        alignSelf={"center"}
-                        rounded={"full"}
-                        bg={"whiteAlpha.300"}
-                        p={2}
-                        color={"white"}
-                        boxShadow={"lg"}
-                      >
-                        <WarningIcon w={12} h={12} />
-                      </Box>
-                      <Heading
-                        size={"xl"}
-                        textAlign={"center"}
-                        textShadow={"md"}
-                      >
-                        Coming Soon
-                      </Heading>
-                      {/* In the meantime visit my Github Profile */}
-                      <Stack direction={"row"} justify={"center"} spacing={2}>
-                        <chakra.span>
-                          In the meantime, visit my Github Profile:{" "}
-                          <Link
-                            fontSize={"sm"}
-                            alignSelf={"center"}
-                            color={
-                              colorMode === "light" ? "gray.800" : "gray.200"
-                            }
-                            isExternal
-                            w={"fit-content"}
-                            href={"https://github.com/bwcr"}
-                          >
-                            <chakra.span fontWeight={"bold"}>
-                              @bwcr <ExternalLinkIcon mx="2px" />
-                            </chakra.span>
-                          </Link>{" "}
-                          <Link
-                            fontSize={"sm"}
-                            w={"fit-content"}
-                            alignSelf={"center"}
-                            color={
-                              colorMode === "light" ? "gray.800" : "gray.200"
-                            }
-                            isExternal
-                            href={
-                              "https://github.com/bayu-wicaksono-at-insignia"
-                            }
-                          >
-                            <chakra.span fontWeight={"bold"}>
-                              @bayu-wicaksono-at-insignia{" "}
-                              <ExternalLinkIcon mx="2px" />
-                            </chakra.span>
-                          </Link>
-                        </chakra.span>
-                      </Stack>
-                    </Stack>
-                  </Stack>
                 </Box>
               </Stack>
             </AnimationOnScroll>
@@ -750,6 +665,7 @@ function Home({ meta, homepage, experiences }) {
             py={6}
             as={"section"}
             pos={"relative"}
+            className="contact-section"
           >
             <AnimationOnScroll
               animateIn="animate__fadeIn"
@@ -873,6 +789,7 @@ function Home({ meta, homepage, experiences }) {
             py={6}
             spacing={4}
             justify={"center"}
+            className="footer-section"
           >
             <Stack direction={"row"} spacing={6} justify={"center"}>
               {homepage.attributes.socials.map((link, index) => (
@@ -919,8 +836,7 @@ export const getStaticProps = async () => {
           title: "Frontend Developer",
           company_name: "Maven Digital Asia",
           company_url: "https://maven.co.id/",
-          description:
-            "<p>Maven Digital Asia is a digital company that prioritizes delivering measurable outcomes, formed from the merger of two exceptional organizations. During my past experiences, I worked on several front-end projects that involved React development and creating WordPress websites for e-commerce purposes. Some of my significant accomplishments in these projects were:</p><ul><li><p>Improved and developed a <strong>CRUD dashboard</strong> for Cleaning Service Product management using the <strong>React </strong>framework.</p></li><li><p>Designed and developed a <strong>WordPress</strong> landing page and an e-commerce website.</p></li><li><p>Created a landing page with a career portal by utilizing <strong>React</strong>, <strong>Tailwind CSS</strong>, and <strong>Next.js</strong> framework.</p></li><li><p>Built an HTML static page for insurance registration with the support of the <strong>Tailwind CSS </strong>framework.</p></li></ul>",
+          description: `<p>Maven Digital Asia is a digital company that prioritizes delivering measurable outcomes, formed from the merger of two exceptional organizations. During my past experiences, I worked on several front-end projects that involved React development and creating WordPress websites for e-commerce purposes. Some of my significant accomplishments in these projects were:</p><ul class="c16 lst-kix_list_8-0"><li class="c6 li-bullet-0"><span class="c0">Revitalized and expanded a </span><b class="c2">CRUD dashboard </b><span class="c0">for Cleaning Service Product management, elevating user experience and efficiency with </span><b class="c2">React</b><span class="c3 c0">.</span></li><li class="c6 li-bullet-0"><span class="c0">Developed engaging </span><b class="c2">WordPress </b><span class="c3 c0">landing pages and e-commerce websites, ensuring a seamless and visually appealing online presence.</span></li><li class="c6 li-bullet-0"><span class="c0">Engineered a </span><b class="c2">landing page </b><span class="c0">featuring a </span><b class="c2">career portal </b><span class="c0">using </span><b class="c2">React</b><span class="c0">, </span><b class="c2">Tailwind CSS</b><span class="c0">, and the </span><b class="c2">Next.js </b><span class="c3 c0">framework, enhancing recruitment initiatives.</span></li><li class="c6 li-bullet-0"><span class="c0">Constructed an </span><b class="c2">HTML </b><span class="c0">page for streamlined </span><b class="c2">insurance registration</b><span class="c0">, optimizing user interactions through the </span><b class="c2">Tailwind CSS framework</b><span class="c3 c0">.</span></li></ul>`,
           start_date: "2021-03-25",
           end_date: "2021-11-25",
         },
@@ -931,8 +847,7 @@ export const getStaticProps = async () => {
           title: "Full Stack Developer",
           company_name: "Insignia ID",
           company_url: "https://insignia.co.id/",
-          description:
-            "<p>Insignia offers e-commerce solutions that assist brands and merchants in making data-driven business decisions by utilizing big data analytics and conversational user interfaces.</p><p>I've had the chance to work on a number of websites with a front-end development-heavy approach during my professional time at Insignia. I have successfully finished the following projects:</p><ul><li><p>Designed an efficient and sustainable <strong>dashboard template</strong> by utilizing <strong>React </strong>and <strong>Chakra UI</strong>. The template was used to manage various items and proved to be highly effective.</p></li><li><p>Developed <strong>ETL (Extract, Transform, Load)</strong> tools that feature <strong>drag-and-drop</strong> functionality. These tools were created to simplify the data processing and migration process.</p></li><li><p>Built a website for <strong>online travel and tour booking</strong> that offers a range of services, including the ability to book flights, trains, hotels, and trips.</p></li><li><p>Designed a <strong>virtual campaign website</strong> aimed at raising awareness for a specific cause or event.</p></li></ul>",
+          description: `<p>Insignia offers e-commerce solutions that assist brands and merchants in making data-driven business decisions by utilizing big data analytics and conversational user interfaces.</p><p>I've had the chance to work on a number of websites with a front-end development-heavy approach during my professional time at Insignia. I have successfully finished the following projects:</p><ul class="c16 lst-kix_list_8-0 start"><li class="c6 li-bullet-0"><span class="c0">Spearheaded the development of a web dashboard for a </span><b class="c2">Marketing Automation Tool</b><span class="c0">, incorporating advanced features such as </span><b class="c2">Journey Flow Builder</b><span class="c0">&nbsp;and </span><b class="c2">Advanced Analytics</b><span class="c0">&nbsp;with </span><b class="c2">React</b><span class="c3 c0">.</span></li><li class="c6 li-bullet-0"><span class="c0">Engineered an </span><b class="c2">ETL Tools </b><span class="c0">web dashboard, implementing intuitive </span><b class="c2">drag-and-drop functionality</b><span class="c0">. This innovation streamlined the data processing and migration processes, resulting in notable gains in operational efficiency with </span><b class="c2">React</b><span class="c3 c0">.</span></li><li class="c6 li-bullet-0"><span class="c0">Architected and implemented a high-performance and sustainable </span><b class="c2">dashboard template </b><span class="c0">for the company using </span><b class="c2">React </b><span class="c0">and </span><b class="c2">Chakra UI </b><span class="c3 c0">framework.</span></li><li class="c6 li-bullet-0"><span class="c0">Orchestrated the development of a seamless online travel and tour booking platform using </span><b class="c2">React</b><span class="c0">, </span><b class="c2">Next.JS</b><span class="c0">, </span><b class="c2">Redux</b><span class="c0">, and </span><b class="c2">React Query</b><span class="c3 c0">. This platform revolutionized the user experience for booking flights, trains, hotels, and trips.</span></li><li class="c6 li-bullet-0"><span class="c0">Conceptualized and designed a responsive </span><b class="c2">virtual campaign website</b><span class="c0">&nbsp;using </span><b class="c2">Tailwind CSS</b><span class="c0">, effectively raising awareness for a specific cause or event.</span></li></ul>`,
           start_date: "2021-11-25",
           end_date: null,
         },
@@ -992,11 +907,35 @@ export const getStaticProps = async () => {
       },
     };
     const meta = {
-      website: "https://bayuwicaksono.com",
+      website: "https://www.bayuwicaksono.com",
       title: `${homepage.attributes.name} - ${homepage.attributes.headline}`,
       description:
         "Bayu Wicaksono is a developer with many experiences such as a full-stack and front-end developer. He is passionate about creating visually appealing designs and keeping up with the latest trends in web design.",
     };
+    const projects = [
+      {
+        id: 1,
+        attributes: {
+          name: "Personal Website",
+          image: `${meta.website}/png/projects/personal-website.png`,
+          company: "Personal Project",
+          description:
+            "Developed a personal website to showcase a portfolio of personal projects and experiences implemented with React and Next.js, the website emphasizes proficiency in web development.",
+          url: "https://github.com/bwcr/personal-website",
+        },
+      },
+      {
+        id: 2,
+        attributes: {
+          name: "IoT Recapitulation Data Dashboard",
+          image: `${meta.website}/png/projects/iot-dashboard.png`,
+          company: "Thesis Project",
+          description:
+            "Established the first dedicated website for the thesis project to integrate IoT home device monitoring for gardening, door security, and room control. This website has been independently over a period of 6 months utilized with Laravel and the Bootstrap Framework. It was also used the Firebase database for seamless integrations with mobile applications.",
+          url: "https://github.com/bwcr/smarthome-dashboard",
+        },
+      },
+    ];
 
     meta.image = `${meta.website}/png/cover.png`;
 
@@ -1008,6 +947,7 @@ export const getStaticProps = async () => {
         ),
         homepage,
         meta,
+        projects,
       },
     };
   } catch (err) {
@@ -1016,6 +956,7 @@ export const getStaticProps = async () => {
         experiences: [],
         homepage: {},
         meta: {},
+        projects: [],
       },
     };
   }
